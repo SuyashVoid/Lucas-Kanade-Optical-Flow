@@ -13,8 +13,8 @@ Optical flow is the pattern of apparent motion of image objects between two cons
 - Then we calculate the partial temporal derivative of the second frame (blurred).
 - Then we precalculate $Ix^2, Iy^2, IxIy, IxIt, IyIt,$ before convolving it with a simple WxW filter made of all ones (to get the sum of the values in the WxW window). Kinda like box filter but without the division by $W^2$.
 - Then we loop through each pixel and find out the $A^TA$ matrix and $A^Tb$ vector for each pixel that looks like: 
-$A^TA = \begin{bmatrix} \sum Ix^2 & \sum IxIy \\ \sum IxIy & \sum Iy^2 \end{bmatrix}$
-$A^Tb = \begin{bmatrix} -\sum IxIt \\ -\sum IyIt \end{bmatrix}$
+$$A^TA = \begin{bmatrix} \sum Ix^2 & \sum IxIy\ \sum IxIy & \sum Iy^2 \end{bmatrix}$$
+$$A^Tb = \begin{bmatrix} -\sum IxIt\ -\sum IyIt \end{bmatrix}$$
 - Then we solve the equation $A^TAx = A^Tb$ to get the x and y components of the optical flow vector for each pixel.
 
 ## Part 2: Warp and Subtract
